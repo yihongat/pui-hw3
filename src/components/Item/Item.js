@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { RollDetailItem } from "../../pages/Home/Home";
 
 export function RollItem(type, price, image) {
   this.type = type;
@@ -31,13 +30,12 @@ const PACK_SIZE_PRICE_MAP = {
 const PACK_SIZE_OPTIONS_ORDER = ["1", "3", "6", "12"];
 
 const calculateTotalPrice = (base, glazing, packSize) => {
-  console.log(base, glazing, packSize);
   return parseFloat(
     (base + GLAZING_PRICE_MAP[glazing]) * PACK_SIZE_PRICE_MAP[packSize]
   ).toFixed(2);
 };
 
-const Item = ({ type, price, image, addToCart }) => {
+const Item = ({ type, price, image }) => {
   const [glazing, setGlazing] = useState(GLAZING_OPTIONS_ORDER[0]);
   const [packSize, setPackSize] = useState(PACK_SIZE_OPTIONS_ORDER[0]);
 
@@ -80,9 +78,6 @@ const Item = ({ type, price, image, addToCart }) => {
         )}`}</span>
         <button
           className="addToCardButton"
-          onClick={() => addToCart(
-            new RollDetailItem(type, price, glazing, packSize)
-          )}
         >
           Add to Cart
         </button>
